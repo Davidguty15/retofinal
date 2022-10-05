@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Carlos Sierra" />
+        <meta name="description" content="Ejemplo de autenticacion con OAuth2" />
+        <meta name="keywords" content="OAuth2, MisionTIC, Sergio Arboleda" />
+
+        <title>Demo OAuth2 SergioArboleda</title>
+        <base href="/" />
+
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h1>#Misi&oacute;nTIC 2022</h1>
+        <div class="container unauthenticated">
+            Para iniciar sesi&oacute;n con <i>GitHub</i>
+            <a href="/oauth2/authorization/github">haz click</a>
+        </div>
+        <div class="container authenticated" style="display:none">
+            Autenticado como : <span id="user"></span>
+        </div>
+    </body>
+
+<script type="text/javascript">
+    $.get("/user", function (data){
+        console.log(data);
+        $("#user").html(data.name);
+        $(".unauthenticated").hide();
+        $(".authenticated").show();
+    })
+</script>
+</html>
