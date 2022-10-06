@@ -41,20 +41,21 @@ public class FarmController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Farm> crearFarm(@RequestBody Farm farm){
-        return new ResponseEntity<Farm>(this.farmService.crearFarm(farm), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearFarm(@RequestBody Farm farm){
+        this.farmService.crearFarm(farm);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarFarm(@PathVariable("id") int id){
+    public ResponseEntity<Void>  eliminarFarm(@PathVariable("id") int id){
         this.farmService.eliminarFarm(id);
-        return new ResponseEntity<String>("Farm Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> actualizarFarm(@RequestBody Farm farm){
+    public ResponseEntity<Void>  actualizarFarm(@RequestBody Farm farm){
         this.farmService.actualizarFarm(farm.getId(), farm);
-        return new ResponseEntity<String>("Farm Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     
 

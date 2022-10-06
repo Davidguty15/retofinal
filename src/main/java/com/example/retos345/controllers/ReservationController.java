@@ -41,20 +41,21 @@ public class ReservationController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Reservation> crearReservation(@RequestBody Reservation reservation){
-        return new ResponseEntity<Reservation>(this.reservationService.crearReservation(reservation), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearReservation(@RequestBody Reservation reservation){
+        this.reservationService.crearReservation(reservation);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarReservation(@PathVariable("id") int id){
+    public ResponseEntity<Void> eliminarReservation(@PathVariable("id") int id){
         this.reservationService.eliminarReservation(id);
-        return new ResponseEntity<String>("Reservation Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> actualizarReservation(@RequestBody Reservation reservation){
+    public ResponseEntity<Void> actualizarReservation(@RequestBody Reservation reservation){
         this.reservationService.actualizarReservation(reservation.getId(), reservation);
-        return new ResponseEntity<String>("Reservation Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     
 

@@ -41,21 +41,21 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Client> crearClient(@RequestBody Client client){
-        System.out.println("paso2");
-        return new ResponseEntity<Client>(this.clientService.crearClient(client), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearClient(@RequestBody Client client){
+        this.clientService.crearClient(client);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarClient(@PathVariable("id") int id){
+    public ResponseEntity<Void> eliminarClient(@PathVariable("id") int id){
         this.clientService.eliminarClient(id);
-        return new ResponseEntity<String>("Client Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> actualizarClient(@RequestBody Client client){
+    public ResponseEntity<Void> actualizarClient(@RequestBody Client client){
         this.clientService.actualizarClient(client.getId(), client);
-        return new ResponseEntity<String>("Client Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     
 
