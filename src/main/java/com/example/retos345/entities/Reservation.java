@@ -39,7 +39,7 @@ public class Reservation implements Serializable{
     //Relacion Muchos a uno. La Reservation tiene enlazados un Client y Un Farm
 
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties(value = {"messages", "reservations"})
+    @JsonIgnoreProperties(value = {"reservations"})
 	@JoinColumn(name = "farm_id")
 	private Farm farm;
 
@@ -51,7 +51,7 @@ public class Reservation implements Serializable{
 	// @JoinColumn(name = "ortopedic_id")
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	// private Ortopedic ortopedic;
-    
+
     @Column(name = "score")
     private String score;
 
