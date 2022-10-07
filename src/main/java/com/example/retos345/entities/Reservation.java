@@ -43,6 +43,11 @@ public class Reservation implements Serializable{
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Farm farm;
 
+    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// @JoinColumn(name = "ortopedic_id")
+	// @JsonProperty(access = Access.WRITE_ONLY)
+	// private Ortopedic ortopedic;
+
     //***** METODOS *****
     public Integer getId() {
         return id;
@@ -76,6 +81,14 @@ public class Reservation implements Serializable{
         this.client = client;
     }
 
+    // public Ortopedic getOrtopedic() {
+    //     return ortopedic;
+    // }
+
+    // public void setOrtopedic(Ortopedic ortopedic) {
+    //     this.ortopedic = ortopedic;
+    // }
+
     public Farm getFarm() {
         return farm;
     }
@@ -83,5 +96,6 @@ public class Reservation implements Serializable{
     public void setFarm(Farm farm) {
         this.farm = farm;
     }
+    
 
 }

@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -39,9 +42,13 @@ public class Farm implements Serializable{
 
     //***** RELACIONES *****
     //Relación uno a uno. Una Farm tiene un Category relacionada.
-    @OneToOne
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties(value = {"farms"})
 	@JoinColumn(name = "category_id")
 	private Category category;
+    // @OneToOne
+	// @JoinColumn(name = "category_id")
+	// private Category category;
 
     // Un Farm puede tener muchas Reservation y Messages.
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
