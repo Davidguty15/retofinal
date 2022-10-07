@@ -33,18 +33,18 @@ public class Message implements Serializable{
     
     
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties(value = {"messages"})
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
 	@JoinColumn(name = "farm_id")
 	private Farm farm;
 
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties(value = {"messages"})
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
 	@JoinColumn(name = "client_id")
 	private Client client;
 
 
 
-    
+
     // @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	// @JoinColumn(name = "ortopedic_id")
 	// @JsonProperty(access = Access.WRITE_ONLY)

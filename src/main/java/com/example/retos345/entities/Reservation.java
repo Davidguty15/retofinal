@@ -39,22 +39,26 @@ public class Reservation implements Serializable{
     //Relacion Muchos a uno. La Reservation tiene enlazados un Client y Un Farm
 
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties(value = {"messages"})
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
 	@JoinColumn(name = "farm_id")
 	private Farm farm;
 
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties(value = {"messages"})
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
 	@JoinColumn(name = "client_id")
 	private Client client;
     // @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	// @JoinColumn(name = "ortopedic_id")
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	// private Ortopedic ortopedic;
+    
+    @Column(name = "score")
+    private String score;
 
     //***** CONSTRUCTOR *****
     public Reservation() {
         this.status = "created";
+        this.score = null;
     }
 
 
@@ -114,6 +118,16 @@ public class Reservation implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+
+    public String getScore() {
+        return score;
+    }
+
+
+    public void setScore(String score) {
+        this.score = score;
     }
     
 
