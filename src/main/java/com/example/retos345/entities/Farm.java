@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,7 +34,7 @@ public class Farm implements Serializable{
     private String address;
 
     @Column(name = "extension")
-    private String extension;
+    private Integer extension;
 
     @Column(name = "description")
     private String description;
@@ -87,11 +86,11 @@ public class Farm implements Serializable{
         this.address = address;
     }
 
-    public String getExtension() {
+    public Integer getExtension() {
         return extension;
     }
 
-    public void setExtension(String extension) {
+    public void setExtension(Integer extension) {
         this.extension = extension;
     }
 
