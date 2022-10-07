@@ -60,7 +60,8 @@ public class Farm implements Serializable{
     
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("farm")
+    @JsonIgnoreProperties(value = {"client", "farm"})
+    // @JsonIgnoreProperties("farm")
     private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
