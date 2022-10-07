@@ -45,7 +45,13 @@ public class CategoryService {
         public void actualizarCategory(int id, Category category){
             if(!this.categoryRepository.findById(id).isEmpty()){
                 Category categoryDB = this.categoryRepository.findById(id).get();
-
+                
+                if(category.getName() != null){
+                    categoryDB.setName(category.getName());
+                }
+                if(category.getDescription() != null){
+                    categoryDB.setDescription(category.getDescription());
+                }
                 this.categoryRepository.save(categoryDB);
             }
         }

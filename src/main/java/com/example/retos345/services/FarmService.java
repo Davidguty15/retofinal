@@ -45,7 +45,18 @@ public class FarmService {
         public void actualizarFarm(int id, Farm farm){
             if(!this.farmRepository.findById(id).isEmpty()){
                 Farm farmDB = this.farmRepository.findById(id).get();
-
+                if(farm.getName() != null){
+                    farmDB.setName(farm.getName());
+                }
+                if(farm.getAddress() != null){
+                    farmDB.setAddress(farm.getAddress());
+                }
+                if(farm.getDescription() != null){
+                    farmDB.setDescription(farm.getDescription());
+                }
+                if(farm.getExtension() != null){
+                    farmDB.setExtension(farm.getExtension());
+                }
                 this.farmRepository.save(farmDB);
             }
         }
