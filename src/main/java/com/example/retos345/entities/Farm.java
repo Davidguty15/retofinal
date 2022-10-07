@@ -28,17 +28,23 @@ public class Farm implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "address")
     private String address;
 
     @Column(name = "extension")
     private String extension;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "description")
     private String description;
+
+    
+
+    
+
+    
 
     //***** RELACIONES *****
     //Relación uno a uno. Una Farm tiene un Category relacionada.
@@ -51,11 +57,17 @@ public class Farm implements Serializable{
 	// private Category category;
 
     // Un Farm puede tener muchas Reservation y Messages.
+    
+    
+
+    @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("farm")
+    private Set<Message> messages = new HashSet<>();
+
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
 
-    @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
-    private Set<Message> messages = new HashSet<>();
+    
 
 
     //***** METODOS *****

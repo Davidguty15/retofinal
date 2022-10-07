@@ -20,10 +20,7 @@ public class Client implements Serializable{
     //***** ATRIBUTOS *****
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "name")
-    private String name;
+    private Integer idClient;
 
     @Column(name = "email")
     private String email;
@@ -31,25 +28,24 @@ public class Client implements Serializable{
     @Column(name = "password")
     private String password;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "age")
     private Integer age;
     
     //***** RELACIONES *****:
     // Un empleado puede tener muchas Reservation y Messages.
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Reservation> reservations = new HashSet<>();
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Message> messages = new HashSet<>();
 
-    //***** METODOS *****
-    public Integer getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private Set<Reservation> reservations = new HashSet<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    
+
+    //***** METODOS *****
+ 
 
     public String getName() {
         return name;
@@ -97,6 +93,14 @@ public class Client implements Serializable{
 
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    public Integer getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
     }
     
     

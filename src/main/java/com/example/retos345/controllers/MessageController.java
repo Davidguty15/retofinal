@@ -54,7 +54,7 @@ public class MessageController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> actualizarMessage(@RequestBody Message message){
-        this.messageService.actualizarMessage(message.getId(), message);
+        this.messageService.actualizarMessage(message.getIdMessage(), message);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     

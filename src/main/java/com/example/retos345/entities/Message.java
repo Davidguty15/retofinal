@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -22,36 +23,35 @@ public class Message implements Serializable{
     //***** ATRIBUTOS *****
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
 
     @Column(name = "messageText")
     private String messageText;
 
     //***** RELACIONES *****
     //Relacion Muchos a uno. El Message tiene enlazados un Client y Un Farm
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "client_id")
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private Client client;
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties(value = {"messages"})
 	@JoinColumn(name = "farm_id")
-	@JsonProperty(access = Access.WRITE_ONLY)
 	private Farm farm;
 
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties(value = {"messages"})
+	@JoinColumn(name = "client_id")
+	private Client client;
+
+
+
+    
     // @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	// @JoinColumn(name = "ortopedic_id")
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	// private Ortopedic ortopedic;
 
     //***** METODOS *****
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+   
 
     public String getMessageText() {
         return messageText;
@@ -83,6 +83,14 @@ public class Message implements Serializable{
 
     public void setFarm(Farm farm) {
         this.farm = farm;
+    }
+
+    public Integer getIdMessage() {
+        return idMessage;
+    }
+
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
     }
 
     
