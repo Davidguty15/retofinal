@@ -4,17 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "message")
@@ -34,21 +30,13 @@ public class Message implements Serializable{
     
     @ManyToOne(optional = false)
     @JsonIgnoreProperties(value = {"messages", "reservations"})
-	@JoinColumn(name = "farm_id")
-	private Farm farm;
+	@JoinColumn(name = "ortopedic_id")
+	private Ortopedic ortopedic;
 
     @ManyToOne(optional = false)
     @JsonIgnoreProperties(value = {"messages", "reservations"})
 	@JoinColumn(name = "client_id")
 	private Client client;
-
-
-
-
-    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	// @JoinColumn(name = "ortopedic_id")
-	// @JsonProperty(access = Access.WRITE_ONLY)
-	// private Ortopedic ortopedic;
 
     //***** METODOS *****
    
@@ -69,20 +57,12 @@ public class Message implements Serializable{
         this.client = client;
     }
 
-    // public Ortopedic getOrtopedic() {
-    //     return ortopedic;
-    // }
-
-    // public void setOrtopedic(Ortopedic ortopedic) {
-    //     this.ortopedic = ortopedic;
-    // }
-
-    public Farm getFarm() {
-        return farm;
+    public Ortopedic getOrtopedic() {
+        return ortopedic;
     }
 
-    public void setFarm(Farm farm) {
-        this.farm = farm;
+    public void setOrtopedic(Ortopedic ortopedic) {
+        this.ortopedic = ortopedic;
     }
 
     public Integer getIdMessage() {

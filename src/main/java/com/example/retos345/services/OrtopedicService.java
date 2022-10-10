@@ -33,6 +33,7 @@ public class OrtopedicService {
         }
 
         public Ortopedic crearOrtopedic(Ortopedic ortopedic){
+            System.out.println("service OK *************");
             return this.ortopedicRepository.save(ortopedic);
         }
 
@@ -45,6 +46,18 @@ public class OrtopedicService {
         public void actualizarOrtopedic(int id, Ortopedic ortopedic){
             if(!this.ortopedicRepository.findById(id).isEmpty()){
                 Ortopedic ortopedicDB = this.ortopedicRepository.findById(id).get();
+                if(ortopedic.getName() != null){
+                    ortopedicDB.setName(ortopedic.getName());
+                }
+                if(ortopedic.getBrand() != null){
+                    ortopedicDB.setBrand(ortopedic.getBrand());
+                }
+                if(ortopedic.getDescription() != null){
+                    ortopedicDB.setDescription(ortopedic.getDescription());
+                }
+                if(ortopedic.getYear() != null){
+                    ortopedicDB.setYear(ortopedic.getYear());
+                }
 
                 this.ortopedicRepository.save(ortopedicDB);
             }

@@ -42,6 +42,7 @@ public class OrtopedicController {
 
     @PostMapping("/save")
     public ResponseEntity<Void> crearOrtopedic(@RequestBody Ortopedic ortopedic){
+        System.out.println("Controller OK *************");
         this.ortopedicService.crearOrtopedic(ortopedic);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
