@@ -62,6 +62,8 @@ public class ReservationController {
     
     @GetMapping("/report-dates/{start}/{end}")
     public ResponseEntity<List<Reservation>> getReservationsBetweenTime(@PathVariable("start") String start, @PathVariable("end") String end){
+        System.out.println("**** start: "+ start);
+        System.out.println("**** start: "+ end);
         return new ResponseEntity<List<Reservation>>(this.reservationService.getReservationsBetweenTime(start, end), HttpStatus.OK);
     }
 
