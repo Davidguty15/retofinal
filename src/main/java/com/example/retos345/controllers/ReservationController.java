@@ -60,5 +60,19 @@ public class ReservationController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
     
+    @GetMapping("/report-dates/{start}/{end}")
+    public ResponseEntity<List<Reservation>> getReservationsBetweenTime(@PathVariable("start") String start, @PathVariable("end") String end){
+        return new ResponseEntity<List<Reservation>>(this.reservationService.getReservationsBetweenTime(start, end), HttpStatus.OK);
+    }
+
+    @GetMapping("/report-status")
+    public ResponseEntity<String> getReservationsStatus(){
+        return new ResponseEntity<String>(this.reservationService.getReservationsStatus(), HttpStatus.OK);
+    }
+
+    @GetMapping("/report-clients")
+    public ResponseEntity<List<Reservation>> getReservationsClients(){
+        return new ResponseEntity<List<Reservation>>(this.reservationService.getReservationsClients(), HttpStatus.OK);
+    }
 
 }

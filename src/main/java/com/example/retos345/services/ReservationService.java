@@ -19,6 +19,24 @@ public class ReservationService {
             this.reservationRepository = reservationRepository;
         }
 
+        // ****** INICIO REPORTES ******
+        public List<Reservation> getReservationsBetweenTime(String start, String end){
+            return this.reservationRepository.findByStartDateBetween(start, end);
+        }
+
+        public String getReservationsStatus(){
+            List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
+            List<Reservation> completed = this.reservationRepository.findByStatus("completed");
+            return "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+" }";
+        }
+
+        public List<Reservation> getReservationsClients(){
+            return this.reservationRepository.findAll();
+        }
+
+
+        // ****** FIN REPORTES ******
+
         // METODOS CRUD
         public List<Reservation> getListReservations(){
             return this.reservationRepository.findAll();
