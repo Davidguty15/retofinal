@@ -41,7 +41,7 @@ public class Ortopedic implements Serializable{
 
     //***** RELACIONES *****
     //Relación uno a uno. Una Farm tiene un Category relacionada.
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JsonIgnoreProperties(value = {"ortopedics"})
 	@JoinColumn(name = "category_id")
 	private Category category;
