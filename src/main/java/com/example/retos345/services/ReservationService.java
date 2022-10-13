@@ -30,7 +30,9 @@ public class ReservationService {
             List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
             System.out.println("**** Completed: "+ completed.size());
             System.out.println("**** Cancelled: "+ cancelled.size());
-            return "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+" }";
+            String result = "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+" }";
+            System.out.println("**** Resultado: "+ result);
+            return result;
         }
 
         public List<Reservation> getReservationsClients(){
