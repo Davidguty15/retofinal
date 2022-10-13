@@ -21,7 +21,9 @@ public class ReservationService {
         }
 
         // ****** INICIO REPORTES ******
-        public List<Reservation> getReservationsBetweenTime(Date start, Date end){
+        public List<Reservation> getReservationsBetweenTime(String start, String end){
+            System.out.println("**** Completed: "+ start);
+            System.out.println("**** Cancelled: "+ end);
             return this.reservationRepository.findByStartDateBetween(start, end);
         }
 
@@ -30,7 +32,7 @@ public class ReservationService {
             List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
             System.out.println("**** Completed: "+ completed.size());
             System.out.println("**** Cancelled: "+ cancelled.size());
-            String result = "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+" }";
+            String result = "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+"}";
             System.out.println("**** Resultado: "+ result);
             return result;
         }
