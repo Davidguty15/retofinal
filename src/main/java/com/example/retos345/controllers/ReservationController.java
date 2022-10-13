@@ -1,5 +1,6 @@
 package com.example.retos345.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class ReservationController {
     }
     
     @GetMapping("/report-dates/{start}/{end}")
-    public ResponseEntity<List<Reservation>> getReservationsBetweenTime(@PathVariable("start") String start, @PathVariable("end") String end){
+    public ResponseEntity<List<Reservation>> getReservationsBetweenTime(@PathVariable("start") Date start, @PathVariable("end") Date end){
         System.out.println("**** start: "+ start);
         System.out.println("**** start: "+ end);
         return new ResponseEntity<List<Reservation>>(this.reservationService.getReservationsBetweenTime(start, end), HttpStatus.OK);

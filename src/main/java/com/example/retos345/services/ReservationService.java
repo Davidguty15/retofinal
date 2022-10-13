@@ -1,5 +1,6 @@
 package com.example.retos345.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class ReservationService {
         }
 
         // ****** INICIO REPORTES ******
-        public List<Reservation> getReservationsBetweenTime(String start, String end){
+        public List<Reservation> getReservationsBetweenTime(Date start, Date end){
             return this.reservationRepository.findByStartDateBetween(start, end);
         }
 
         public String getReservationsStatus(){
             List<Reservation> completed = this.reservationRepository.findByStatus("completed");
-            List<Reservation> cancelled = this.reservationRepository.findByStatus("canceled");
+            List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
             System.out.println("**** Completed: "+ completed.size());
             System.out.println("**** Cancelled: "+ cancelled.size());
             return "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+" }";
