@@ -1,7 +1,11 @@
 package com.example.retos345.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +28,21 @@ public class ReservationService {
         public List<Reservation> getReservationsBetweenTime(String start, String end){
             System.out.println("**** Completed: "+ start);
             System.out.println("**** Cancelled: "+ end);
-            return this.reservationRepository.findByStartDateBetween(start, end);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd", Locale.ENGLISH);
+            formatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+            List<Reservation> result = null;
+            try {
+                Date startDate = formatter.parse(start);
+                Date endDate = formatter.parse(end);
+                System.out.println("**** startDate: "+ startDate);
+                System.out.println("**** endDate: "+ endDate);
+                result = this.reservationRepository.findByStartDateBetween(startDate, endDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return result;
         }
 
         public String getReservationsStatus(){
@@ -32,7 +50,7 @@ public class ReservationService {
             List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
             System.out.println("**** Completed: "+ completed.size());
             System.out.println("**** Cancelled: "+ cancelled.size());
-            String result = "{'completed':"+completed.size()+",'cancelled':"+cancelled.size()+"}";
+            String result = "\"{completed\":"+completed.size()+"\",canceled\":"+cancelled.size()+"}";
             System.out.println("**** Resultado: "+ result);
             return result;
         }
