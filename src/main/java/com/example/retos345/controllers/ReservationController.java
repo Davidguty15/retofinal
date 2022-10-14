@@ -68,8 +68,8 @@ public class ReservationController {
     }
 
     @GetMapping("/report-status")
-    public ResponseEntity<JSONObject> getReservationsStatus(){
-        return new ResponseEntity<JSONObject>(this.reservationService.getReservationsStatus(), HttpStatus.OK);
+    public ResponseEntity<String> getReservationsStatus(){
+        return new ResponseEntity<String>(this.reservationService.getReservationsStatus(), HttpStatus.OK);
     }
 
     @GetMapping("/report-clients")

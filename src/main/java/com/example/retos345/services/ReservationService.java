@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,13 +42,13 @@ public class ReservationService {
             return result;
         }
 
-        public JSONObject getReservationsStatus(){
+        public String getReservationsStatus(){
             List<Reservation> completed = this.reservationRepository.findByStatus("completed");
             List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
-            JSONObject json = new JSONObject();
-            json.put("completed", completed.size());
-            json.put("cancelled", cancelled.size());
-            return json;
+            String result = "{"+"\"completed\":"+completed.size()+","
+                            + "\"cancelled\":"+cancelled.size()
+                            + "}";
+            return result;
         }
 
         public List<Reservation> getReservationsClients(){
