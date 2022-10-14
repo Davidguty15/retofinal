@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.retos345.entities.Client;
 import com.example.retos345.entities.Reservation;
+import com.example.retos345.repositories.ClientRepository;
 import com.example.retos345.repositories.ReservationRepository;
 
 
@@ -21,6 +21,9 @@ public class ReservationService {
     
         @Autowired
         private ReservationRepository reservationRepository;
+
+        @Autowired
+        private ClientRepository clientRepository;
 
         public ReservationService(ReservationRepository reservationRepository) {
             this.reservationRepository = reservationRepository;
@@ -51,8 +54,8 @@ public class ReservationService {
             return result;
         }
 
-        public List<Reservation> getReservationsClients(){
-            return this.reservationRepository.findAll();
+        public List<Client> getReservationsClients(){
+            return this.clientRepository.findAll();
         }
 
 
