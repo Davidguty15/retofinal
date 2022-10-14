@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,12 @@ public class ReservationService {
 
         // ****** INICIO REPORTES ******
         public List<Reservation> getReservationsBetweenTime(String start, String end){
-            System.out.println("**** Completed: "+ start);
-            System.out.println("**** Cancelled: "+ end);
-            
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd", Locale.ENGLISH);
             formatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));
             List<Reservation> result = null;
             try {
                 Date startDate = formatter.parse(start);
                 Date endDate = formatter.parse(end);
-                System.out.println("**** startDate: "+ startDate);
-                System.out.println("**** endDate: "+ endDate);
                 result = this.reservationRepository.findByStartDateBetween(startDate, endDate);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -45,14 +41,13 @@ public class ReservationService {
             return result;
         }
 
-        public String getReservationsStatus(){
+        public JSONObject getReservationsStatus(){
             List<Reservation> completed = this.reservationRepository.findByStatus("completed");
             List<Reservation> cancelled = this.reservationRepository.findByStatus("cancelled");
-            System.out.println("**** Completed: "+ completed.size());
-            System.out.println("**** Cancelled: "+ cancelled.size());
-            String result = "\"{completed\":"+completed.size()+"\",canceled\":"+cancelled.size()+"}";
-            System.out.println("**** Resultado: "+ result);
-            return result;
+            JSONObject json = new JSONObject();
+            json.put("completed", completed.size());
+            json.put("cancelled", cancelled.size());
+            return json;
         }
 
         public List<Reservation> getReservationsClients(){

@@ -3,6 +3,7 @@ package com.example.retos345.controllers;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,14 +64,12 @@ public class ReservationController {
     
     @GetMapping("/report-dates/{start}/{end}")
     public ResponseEntity<List<Reservation>> getReservationsBetweenTime(@PathVariable("start") String start, @PathVariable("end") String end){
-        System.out.println("**** Start: "+ start);
-        System.out.println("**** End: "+ end);
         return new ResponseEntity<List<Reservation>>(this.reservationService.getReservationsBetweenTime(start, end), HttpStatus.OK);
     }
 
     @GetMapping("/report-status")
-    public ResponseEntity<Object> getReservationsStatus(){
-        return new ResponseEntity<Object>(this.reservationService.getReservationsStatus(), HttpStatus.OK);
+    public ResponseEntity<JSONObject> getReservationsStatus(){
+        return new ResponseEntity<JSONObject>(this.reservationService.getReservationsStatus(), HttpStatus.OK);
     }
 
     @GetMapping("/report-clients")
