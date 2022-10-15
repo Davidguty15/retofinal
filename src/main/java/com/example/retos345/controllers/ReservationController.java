@@ -73,7 +73,7 @@ public class ReservationController {
 
     @GetMapping("/report-clients")
     public ResponseEntity<List<ReportClient>> getReservationsClients(){
-        List<ReportClient> clientList = this.reservationService.getReservationsClients();
+        List<ReportClient> clientList = this.reservationService.getReservationsReportClients();
         return new ResponseEntity<List<ReportClient>>(clientList, HttpStatus.OK);
     }
 

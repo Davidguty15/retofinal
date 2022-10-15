@@ -56,15 +56,14 @@ public class ReservationService {
             return result;
         }
 
-        public List<ReportClient> getReservationsClients(){
-            List<ReportClient> listResult = new ArrayList();;
+        public List<ReportClient> getReservationsReportClients(){
+            List<ReportClient> listReportClients = new ArrayList();
             List<Client> listClients = this.clientRepository.findAll();
             for(int i=0; i<listClients.size(); i++){
                 ReportClient reportClient = new ReportClient(listClients.get(i));
-                listResult.add(reportClient);
+                listReportClients.add(reportClient);
             }
-
-            return listResult;
+            return listReportClients;
         }
 
 

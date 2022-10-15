@@ -7,15 +7,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-class Sortbyroll implements Comparator<Reservation>
-{
-    // Used for sorting in ascending order of
-    // roll number
-    public int compare(Reservation a, Reservation b)
-    {
-        return b.getIdReservation() - a.getIdReservation();
-    }
-}
+// class Sortbyroll implements Comparator<Reservation>
+// {
+//     // Used for sorting in ascending order of
+//     // roll number
+//     public int compare(Reservation a, Reservation b)
+//     {
+//         return a.getIdReservation() - b.getIdReservation();
+//     }
+// }
 
 public class ReportClient{
     private int total;
@@ -24,7 +24,13 @@ public class ReportClient{
     public ReportClient(Client client){
         this.client = client;
         List<Reservation> arr = new ArrayList<>(client.getReservations());
-        Collections.sort(arr, new Sortbyroll());
+        Collections.sort(arr, new Comparator<Reservation>() {
+            @Override
+            public int compare(Reservation u1, Reservation u2) {
+              return u1.getIdReservation().compareTo(u2.getIdReservation());
+            }
+          });
+        
         Set<Reservation> hSet = new HashSet<Reservation>(arr);
         this.client.setReservations(hSet);
         this.total = client.getReservations().size();
