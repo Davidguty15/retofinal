@@ -13,7 +13,7 @@ class Sortbyroll implements Comparator<Reservation>
     // roll number
     public int compare(Reservation a, Reservation b)
     {
-        return a.getIdReservation() - b.getIdReservation();
+        return b.getIdReservation() - a.getIdReservation();
     }
 }
 
