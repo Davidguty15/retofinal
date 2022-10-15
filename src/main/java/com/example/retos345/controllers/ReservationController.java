@@ -1,9 +1,6 @@
 package com.example.retos345.controllers;
 
-import java.util.Date;
 import java.util.List;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.retos345.entities.Client;
+import com.example.retos345.entities.ReportClient;
 import com.example.retos345.entities.Reservation;
 import com.example.retos345.services.ReservationService;
 
@@ -74,9 +72,9 @@ public class ReservationController {
     }
 
     @GetMapping("/report-clients")
-    public ResponseEntity<Object> getReservationsClients(){
-        List<Client> clientList = this.reservationService.getReservationsClients();
-        return new ResponseEntity<Object>(clientList, HttpStatus.OK);
+    public ResponseEntity<List<ReportClient>> getReservationsClients(){
+        List<ReportClient> clientList = this.reservationService.getReservationsClients();
+        return new ResponseEntity<List<ReportClient>>(clientList, HttpStatus.OK);
     }
 
 }
